@@ -31,19 +31,56 @@ class SawtoothSignal(Sinusoid):
 # decorate(xlabel='Frequency (Hz)')
 # plt.show()
 
-triangle = TriangleSignal().make_wave(duration=0.01)
+# triangle = TriangleSignal().make_wave(duration=0.01)
 # triangle.plot()
 # decorate(xlabel='Time (s)')
 # plt.show()
 
-spectrum = triangle.make_spectrum()
-print(spectrum.hs[0])
+# spectrum = triangle.make_spectrum()
+# print(spectrum.hs[0])
 
-spectrum.hs[0] = 100
-triangle.plot(color='gray')
-spectrum.make_wave().plot()
-decorate(xlabel='Time (s)')
-plt.show()
+# spectrum.hs[0] = 100
+# triangle.plot(color='gray')
+# spectrum.make_wave().plot()
+# decorate(xlabel='Time (s)')
+# plt.show()
+
+def filter_spectrum(spectrum):
+    spectrum.hs[1:] /= spectrum.fs[1:]
+    spectrum.hs[0] = 0
+wave = TriangleSignal(freq=440).make_wave(duration=0.5)
+spectrum = wave.make_spectrum()
+# plt.subplot(121)
+# spectrum.plot(high=10000, color='gray')
+# plt.subplot(122)
+# filter_spectrum(spectrum)
+# spectrum.scale(440)
+# spectrum.plot(high=10000)
+# decorate(xlabel='Frequency (Hz)')
+# plt.show()
+
+# wave = SquareSignal(freq=440).make_wave(duration=0.5)
+# spectrum = wave.make_spectrum()
+# plt.subplot(121)
+# spectrum.plot(high=10000, color='gray')
+# plt.subplot(122)
+# filter_spectrum(spectrum)
+# spectrum.scale(440)
+# spectrum.plot(high=10000)
+# decorate(xlabel='Frequency (Hz)')
+# plt.show()
 
 
+# wave = SawtoothSignal(freq=440).make_wave(duration=0.5)
+# spectrum = wave.make_spectrum()
+# plt.subplot(121)
+# spectrum.plot(high=10000, color='gray')
+# plt.subplot(122)
+# filter_spectrum(spectrum)
+# spectrum.scale(440)
+# spectrum.plot(high=10000)
+# decorate(xlabel='Frequency (Hz)')
+# plt.show()
 
+filtered = spectrum.make_wave()
+filtered.make_audio()
