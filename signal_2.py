@@ -1,5 +1,6 @@
 from thinkdsp import CosSignal, SinSignal, decorate, read_wave
 import matplotlib.pyplot as plt
+
 # wave = read_wave(r'D:\vs_code_prace\Test\dublie_trumpet.wav')
 # wave.normalize()
 # wave.make_audio()
